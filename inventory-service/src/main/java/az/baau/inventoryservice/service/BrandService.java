@@ -13,7 +13,7 @@ public interface BrandService {
 
     BrandDTO getBrandById(Long id);
 
-    BrandDTO updateBrandById(Long id);
+    BrandDTO updateBrandById(Long id,BrandDTO brandDTO);
 
     void deleteBrandById(Long id);
 

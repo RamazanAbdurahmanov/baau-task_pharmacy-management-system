@@ -13,7 +13,7 @@ public interface CatalogService {
 
     CatalogDTO getCatalogById(Long id);
 
-    CatalogDTO updateCatalogById(Long id);
+    CatalogDTO updateCatalogById(Long id,CatalogDTO catalogDTO);
 
     void deleteCatalogById(Long id);
 }
