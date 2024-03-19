@@ -1,6 +1,7 @@
 package az.baau.inventoryservice.controller;
 
 import az.baau.inventoryservice.dto.BrandDTO;
+import az.baau.inventoryservice.dto.ProductDTO;
 import az.baau.inventoryservice.service.BrandService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,6 +24,12 @@ public class BrandController {
     @GetMapping
     public ResponseEntity<List<BrandDTO>> getAllBrands() {
         return new ResponseEntity<>(brandService.getAllBrands(), HttpStatus.OK);
+    }
+
+    @GetMapping("/products/{id}")
+    public ResponseEntity<List<ProductDTO>> getAllProductsByBrand(@PathVariable Long id) {
+
+        return new ResponseEntity<>(brandService.getAllProductsByBrandId(id), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")

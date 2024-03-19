@@ -1,9 +1,12 @@
 package az.baau.inventoryservice.service.impl;
 
 import az.baau.inventoryservice.dto.CatalogDTO;
+import az.baau.inventoryservice.dto.ProductDTO;
 import az.baau.inventoryservice.entity.Catalog;
+import az.baau.inventoryservice.entity.Product;
 import az.baau.inventoryservice.exception.CatalogNotFoundException;
 import az.baau.inventoryservice.mapper.CatalogMapper;
+import az.baau.inventoryservice.mapper.ProductMapper;
 import az.baau.inventoryservice.repository.CatalogRepository;
 import az.baau.inventoryservice.service.CatalogService;
 import org.springframework.stereotype.Service;
@@ -60,6 +63,22 @@ public class CatalogServiceImpl implements CatalogService {
             return CatalogMapper.INSTANCE.catalogToCatalogDTO(updatedCatalog);
         }
         throw new CatalogNotFoundException("Id : "+id);
+    }
+
+    @Override
+    public List<ProductDTO> getAllProductsByCatalog(Long catalogId) {
+        Optional<Catalog> catalog=catalogRepository.findById(catalogId);
+        List<ProductDTO>  productDTOS=new ArrayList<>();
+        if(catalog.isPresent()){
+            List<Product> products=catalog.get().getProducts();
+            for(Product foundProducts : products){
+                productDTOS.add(ProductMapper.INSTANCE.productToProductDTO(foundProducts));
+            }
+            return productDTOS;
+        }
+        else {
+            throw new CatalogNotFoundException("Catalog Not Found");
+        }
     }
 
     @Override

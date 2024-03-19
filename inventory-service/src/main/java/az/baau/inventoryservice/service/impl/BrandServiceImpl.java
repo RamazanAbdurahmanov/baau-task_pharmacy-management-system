@@ -1,9 +1,12 @@
 package az.baau.inventoryservice.service.impl;
 
 import az.baau.inventoryservice.dto.BrandDTO;
+import az.baau.inventoryservice.dto.ProductDTO;
 import az.baau.inventoryservice.entity.Brand;
+import az.baau.inventoryservice.entity.Product;
 import az.baau.inventoryservice.exception.BrandNotFoundException;
 import az.baau.inventoryservice.mapper.BrandMapper;
+import az.baau.inventoryservice.mapper.ProductMapper;
 import az.baau.inventoryservice.repository.BrandRepository;
 import az.baau.inventoryservice.service.BrandService;
 import org.springframework.stereotype.Service;
@@ -64,6 +67,22 @@ public class BrandServiceImpl implements BrandService {
             return BrandMapper.INSTANCE.brandToBrandDTO(brand);
         }
         throw new BrandNotFoundException("Id : " + id);
+    }
+
+    @Override
+    public List<ProductDTO> getAllProductsByBrandId(Long brandId) {
+        Optional<Brand> brands = brandRepository.findById(brandId);
+        List<ProductDTO> productDTOS = new ArrayList<>();
+        if (brands.isPresent()) {
+            List<Product> products = brands.get().getProducts();
+            for (Product foundProducts : products) {
+                productDTOS.add(ProductMapper.INSTANCE.productToProductDTO(foundProducts));
+            }
+            return productDTOS;
+        } else {
+            throw new BrandNotFoundException("Brand Not Found");
+        }
+
     }
 
     @Override

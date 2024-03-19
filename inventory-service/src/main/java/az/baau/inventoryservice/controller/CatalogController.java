@@ -1,6 +1,7 @@
 package az.baau.inventoryservice.controller;
 
 import az.baau.inventoryservice.dto.CatalogDTO;
+import az.baau.inventoryservice.dto.ProductDTO;
 import az.baau.inventoryservice.service.CatalogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -24,6 +25,11 @@ public class CatalogController {
     @GetMapping
     public ResponseEntity<List<CatalogDTO>> getAllCatalogs() {
         return new ResponseEntity<>(catalogService.getAllCatalogs(), HttpStatus.OK);
+    }
+    @GetMapping("/products/{id}")
+    public ResponseEntity<List<ProductDTO>> getAllProductsByCatalogId(@PathVariable Long id){
+
+        return new ResponseEntity<>(catalogService.getAllProductsByCatalog(id),HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
