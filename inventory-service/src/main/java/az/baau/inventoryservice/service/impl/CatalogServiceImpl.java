@@ -2,13 +2,16 @@ package az.baau.inventoryservice.service.impl;
 
 import az.baau.inventoryservice.dto.CatalogDTO;
 import az.baau.inventoryservice.entity.Catalog;
+import az.baau.inventoryservice.exception.CatalogNotFoundException;
 import az.baau.inventoryservice.mapper.CatalogMapper;
 import az.baau.inventoryservice.repository.CatalogRepository;
 import az.baau.inventoryservice.service.CatalogService;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+@Service
 
 public class CatalogServiceImpl implements CatalogService {
     private final CatalogRepository catalogRepository;
@@ -27,11 +30,14 @@ public class CatalogServiceImpl implements CatalogService {
     @Override
     public List<CatalogDTO> getAllCatalogs() {
         List<Catalog> catalogs = catalogRepository.findAll();
+        if(catalogs.isEmpty()==false){
         List<CatalogDTO> catalogDTOS = new ArrayList<>();
         for (Catalog newCatalog : catalogs) {
             catalogDTOS.add(CatalogMapper.INSTANCE.catalogToCatalogDTO(newCatalog));
         }
         return catalogDTOS;
+        }
+        throw new CatalogNotFoundException("Not Found Any Catalog");
     }
 
     @Override
@@ -41,7 +47,7 @@ public class CatalogServiceImpl implements CatalogService {
             Catalog foundCatalog = catalogs.get();
             return CatalogMapper.INSTANCE.catalogToCatalogDTO(foundCatalog);
         }
-        return null;
+        throw  new CatalogNotFoundException("Id : "+id);
     }
 
     @Override
@@ -53,12 +59,17 @@ public class CatalogServiceImpl implements CatalogService {
             updatedCatalog = catalogRepository.save(updatedCatalog);
             return CatalogMapper.INSTANCE.catalogToCatalogDTO(updatedCatalog);
         }
-        return null;
+        throw new CatalogNotFoundException("Id : "+id);
     }
 
     @Override
     public void deleteCatalogById(Long id) {
-        catalogRepository.deleteById(id);
-
+        Optional<Catalog> deletedCatalog = catalogRepository.findById(id);
+        if (deletedCatalog.isPresent()) {
+            catalogRepository.deleteById(id);
+        }
+        else {
+            throw new CatalogNotFoundException("Id : " + id);
+        }
     }
 }

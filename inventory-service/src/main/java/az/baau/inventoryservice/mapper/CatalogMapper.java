@@ -5,7 +5,7 @@ import az.baau.inventoryservice.entity.Catalog;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
-@Mapper
+@Mapper(componentModel = "spring")
 public interface CatalogMapper {
     CatalogMapper INSTANCE= Mappers.getMapper(CatalogMapper.class);
     CatalogDTO catalogToCatalogDTO(Catalog catalog);
