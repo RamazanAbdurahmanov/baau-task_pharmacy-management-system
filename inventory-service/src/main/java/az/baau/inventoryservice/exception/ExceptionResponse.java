@@ -1,8 +1,4 @@
 package az.baau.inventoryservice.exception;
-
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-
 import java.util.Date;
 public class ExceptionResponse {
     private Date timestamp;

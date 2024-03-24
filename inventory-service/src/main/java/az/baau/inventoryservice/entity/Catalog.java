@@ -1,18 +1,9 @@
 package az.baau.inventoryservice.entity;
-
 import jakarta.persistence.*;
-import lombok.*;
-
 import java.util.ArrayList;
 import java.util.List;
-
-@Setter
-@Getter
 @Entity
 @Table(name = "Kataloq")
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
 public class Catalog {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

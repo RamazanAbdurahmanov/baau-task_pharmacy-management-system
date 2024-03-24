@@ -1,13 +1,7 @@
 package az.baau.inventoryservice.dto;
 
-import lombok.*;
-
 import java.time.LocalDateTime;
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
-@Getter
-@Setter
+
 public class ProductDTO {
     private Long id;
     private String name;

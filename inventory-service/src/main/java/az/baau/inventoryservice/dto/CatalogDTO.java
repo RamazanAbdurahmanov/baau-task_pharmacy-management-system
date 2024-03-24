@@ -1,14 +1,5 @@
 package az.baau.inventoryservice.dto;
-
-import lombok.*;
-
 import java.util.List;
-
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-@Getter
-@Setter
 public class CatalogDTO {
     private Long id;
     private String name;

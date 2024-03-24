@@ -1,15 +1,10 @@
 package az.baau.inventoryservice.entity;
 
 import jakarta.persistence.*;
-import lombok.*;
-
 import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "Dermanlar")
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
