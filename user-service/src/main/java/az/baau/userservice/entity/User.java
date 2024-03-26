@@ -3,6 +3,8 @@ package az.baau.userservice.entity;
 import az.baau.userservice.enums.Gender;
 import az.baau.userservice.enums.UserRole;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Size;
 
 import java.time.LocalDate;
 
@@ -12,10 +14,17 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @NotEmpty(message="Boş qoymaq olmaz")
+    @Size(min=2, message="Minimum 2 simvol yazila biler")
+    @Size(max=30, message="maksimum 30 simvol yazila biler")
     private String name;
+    @NotEmpty(message="Boş qoymaq olmaz")
+    @Size(min=2, message="Minimum 2 simvol yazila biler")
+    @Size(max=30, message="maksimum 30 simvol yazila biler")
     private String surname;
     private Gender gender;
     private LocalDate birthDate;
+    @Column(nullable = false,unique = true)
     private String username;
     private String password;
     private UserRole role;

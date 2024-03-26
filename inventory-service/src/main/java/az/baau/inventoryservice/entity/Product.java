@@ -1,6 +1,8 @@
 package az.baau.inventoryservice.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
+
 import java.time.LocalDateTime;
 
 @Entity
@@ -10,9 +12,18 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(nullable = false, unique = true)
+    @NotEmpty(message="Boş qoymaq olmaz")
+    @Size(min=2, message="Minimum 2 simvol yazila biler")
+    @Size(max=30, message="maksimum 30 simvol yazila biler")
     private String name;
+    @Size(max=30, message="maksimum 30 simvol yazila biler")
     private String description;
+    @Min(value=0,message="Minimum 0 qiymet vermek olar")
+    @Max(value=100000,message="Maksimum 1000000 qiymet vermek olar")
+    @NotNull(message="boş qoymaq olmaz!")
     private double price;
+    @Min(value=1,message="Product sayı minimum 1 ola bilər")
+    @Max(value=1000000,message="Product sayı maksimum 1000000 ola bilər")
     private int quantity;
     private LocalDateTime registerDate;
     private LocalDateTime updateDate;
