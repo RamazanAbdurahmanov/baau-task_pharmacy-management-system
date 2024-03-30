@@ -17,7 +17,7 @@ public class CatalogController {
     private CatalogService catalogService;
 
 
-    @PostMapping("/create")
+    @PostMapping
     public ResponseEntity<CatalogDTO> addNewCatalog(@RequestBody CatalogDTO catalogDTO) {
         return new ResponseEntity<>(catalogService.addNewCatalog(catalogDTO), HttpStatus.CREATED);
     }
@@ -26,7 +26,7 @@ public class CatalogController {
     public ResponseEntity<List<CatalogDTO>> getAllCatalogs() {
         return new ResponseEntity<>(catalogService.getAllCatalogs(), HttpStatus.OK);
     }
-    @GetMapping("/products/{id}")
+    @GetMapping("products/{id}")
     public ResponseEntity<List<ProductDTO>> getAllProductsByCatalogId(@PathVariable Long id){
 
         return new ResponseEntity<>(catalogService.getAllProductsByCatalog(id),HttpStatus.OK);
@@ -37,12 +37,12 @@ public class CatalogController {
         return new ResponseEntity<>(catalogService.getCatalogById(id), HttpStatus.FOUND);
     }
 
-    @PutMapping("/update/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<CatalogDTO> updateCatalogById(@PathVariable Long id, @RequestBody CatalogDTO updatedCatalogDTO) {
         return new ResponseEntity<>(catalogService.updateCatalogById(id, updatedCatalogDTO), HttpStatus.OK);
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteCatalogById(@PathVariable Long id) {
         catalogService.deleteCatalogById(id);
         return new ResponseEntity<>("Successfully Deleted ", HttpStatus.OK);

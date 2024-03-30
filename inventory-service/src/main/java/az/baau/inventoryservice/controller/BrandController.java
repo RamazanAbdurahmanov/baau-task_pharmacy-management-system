@@ -16,7 +16,7 @@ public class BrandController {
     @Autowired
     private BrandService brandService;
 
-    @PostMapping("/create")
+    @PostMapping
     public ResponseEntity<BrandDTO> addNewBrand(@RequestBody BrandDTO brandDTO) {
         return new ResponseEntity<>(brandService.addNewBrand(brandDTO), HttpStatus.CREATED);
     }
@@ -37,12 +37,12 @@ public class BrandController {
         return new ResponseEntity<>(brandService.getBrandById(id), HttpStatus.FOUND);
     }
 
-    @PutMapping("/update/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<BrandDTO> updateBrandById(@PathVariable Long id, @RequestBody BrandDTO updatedBrandDto) {
         return new ResponseEntity<>(brandService.updateBrandById(id, updatedBrandDto), HttpStatus.OK);
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteBrandById(@PathVariable Long id) {
         brandService.deleteBrandById(id);
         return new ResponseEntity<>("Deleted", HttpStatus.OK);

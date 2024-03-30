@@ -19,7 +19,7 @@ public class UserController {
     }
 
     @PostMapping
-    public ResponseEntity<UserDTO> registerNewCustomer(@RequestBody UserDTO userDTO) {
+    public ResponseEntity<UserDTO> registerNewCustomer(@Valid @RequestBody UserDTO userDTO) {
         return new ResponseEntity<>(userService.registerNewUser(userDTO), HttpStatus.OK);
 
     }
@@ -35,7 +35,7 @@ public class UserController {
     }
 
     @PutMapping("/id")
-    public ResponseEntity<UserDTO> updateUserById(@PathVariable Long id,  @RequestBody UserDTO updatedUser) {
+    public ResponseEntity<UserDTO> updateUserById(@PathVariable Long id,  @Valid @RequestBody UserDTO updatedUser) {
         return new ResponseEntity<>(userService.updateUserById(id, updatedUser), HttpStatus.OK);
     }
 

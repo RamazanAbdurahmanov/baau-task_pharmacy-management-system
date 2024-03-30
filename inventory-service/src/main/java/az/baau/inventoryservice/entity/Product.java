@@ -1,5 +1,6 @@
 package az.baau.inventoryservice.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 
@@ -30,9 +31,11 @@ public class Product {
 
     @ManyToOne
     @JoinColumn(name = "catalog_id")
+    @JsonIgnore
     private Catalog catalog;
     @ManyToOne
     @JoinColumn(name = "brand_id")
+    @JsonIgnore
     private Brand brand;
 
     public Long getId() {
