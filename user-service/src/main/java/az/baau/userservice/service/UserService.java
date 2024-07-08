@@ -1,6 +1,7 @@
 package az.baau.userservice.service;
 
 import az.baau.userservice.dto.UserDTO;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.List;
 
@@ -10,5 +11,4 @@ public interface UserService {
     UserDTO getUserById(Long id);
     UserDTO updateUserById(Long id,UserDTO userDTO);
     void deleteUserById(Long id);
-
 }
