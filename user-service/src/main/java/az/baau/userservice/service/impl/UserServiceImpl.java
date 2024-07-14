@@ -8,9 +8,6 @@ import az.baau.userservice.mapper.UserMapper;
 import az.baau.userservice.repository.UserRepository;
 import az.baau.userservice.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -19,17 +16,11 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class UserServiceImpl implements UserService, UserDetailsService {
+public class UserServiceImpl implements UserService {
     @Autowired
     private  UserRepository userRepository;
     @Autowired
     private  PasswordEncoder passwordEncoder;
-
-
-    public UserServiceImpl() {
-
-    }
-
 
     @Override
     public UserDTO registerNewUser(UserDTO userDTO) {
@@ -100,17 +91,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         return  userRepository.findByUsername(username);
     }
 
-    @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userRepository.findByUsername(username);
-        if (user == null) {
-            throw new UsernameNotFoundException("User not found");
-        }
-        return org.springframework.security.core.userdetails.User.withUsername(user.getUsername())
-                .password(user.getPassword())
-                .roles(user.getRole().toString())
-                .build();
-    }
+
 
 
 }
