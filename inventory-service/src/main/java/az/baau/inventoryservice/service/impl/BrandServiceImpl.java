@@ -69,21 +69,7 @@ public class BrandServiceImpl implements BrandService {
         throw new BrandNotFoundException("Id : " + id);
     }
 
-    @Override
-    public List<ProductDTO> getAllProductsByBrandId(Long brandId) {
-        Optional<Brand> brands = brandRepository.findById(brandId);
-        List<ProductDTO> productDTOS = new ArrayList<>();
-        if (brands.isPresent()) {
-            List<Product> products = brands.get().getProducts();
-            for (Product foundProducts : products) {
-                productDTOS.add(ProductMapper.INSTANCE.productToProductDTO(foundProducts));
-            }
-            return productDTOS;
-        } else {
-            throw new BrandNotFoundException("Brand Not Found");
-        }
 
-    }
 
     @Override
     public void deleteBrandById(Long id) {

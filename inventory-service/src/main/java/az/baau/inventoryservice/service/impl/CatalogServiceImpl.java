@@ -65,21 +65,6 @@ public class CatalogServiceImpl implements CatalogService {
         throw new CatalogNotFoundException("Id : "+id);
     }
 
-    @Override
-    public List<ProductDTO> getAllProductsByCatalog(Long catalogId) {
-        Optional<Catalog> catalog=catalogRepository.findById(catalogId);
-        List<ProductDTO>  productDTOS=new ArrayList<>();
-        if(catalog.isPresent()){
-            List<Product> products=catalog.get().getProducts();
-            for(Product foundProducts : products){
-                productDTOS.add(ProductMapper.INSTANCE.productToProductDTO(foundProducts));
-            }
-            return productDTOS;
-        }
-        else {
-            throw new CatalogNotFoundException("Catalog Not Found");
-        }
-    }
 
     @Override
     public void deleteCatalogById(Long id) {

@@ -26,11 +26,6 @@ public class BrandController {
         return new ResponseEntity<>(brandService.getAllBrands(), HttpStatus.OK);
     }
 
-    @GetMapping("/products/{id}")
-    public ResponseEntity<List<ProductDTO>> getAllProductsByBrand(@PathVariable Long id) {
-
-        return new ResponseEntity<>(brandService.getAllProductsByBrandId(id), HttpStatus.OK);
-    }
 
     @GetMapping("/{id}")
     public ResponseEntity<BrandDTO> getOneBrand(@PathVariable(name = "id") Long id) {

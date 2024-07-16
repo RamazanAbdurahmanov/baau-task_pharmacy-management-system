@@ -26,11 +26,6 @@ public class CatalogController {
     public ResponseEntity<List<CatalogDTO>> getAllCatalogs() {
         return new ResponseEntity<>(catalogService.getAllCatalogs(), HttpStatus.OK);
     }
-    @GetMapping("products/{id}")
-    public ResponseEntity<List<ProductDTO>> getAllProductsByCatalogId(@PathVariable Long id){
-
-        return new ResponseEntity<>(catalogService.getAllProductsByCatalog(id),HttpStatus.OK);
-    }
 
     @GetMapping("/{id}")
     public ResponseEntity<CatalogDTO> getOneCatalog(@PathVariable Long id) {

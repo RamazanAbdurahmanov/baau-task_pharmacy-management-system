@@ -15,7 +15,6 @@ public interface CatalogService {
     CatalogDTO getCatalogById(Long id);
 
     CatalogDTO updateCatalogById(Long id,CatalogDTO catalogDTO);
-    List<ProductDTO> getAllProductsByCatalog(Long catalogId);
 
     void deleteCatalogById(Long id);
 }
