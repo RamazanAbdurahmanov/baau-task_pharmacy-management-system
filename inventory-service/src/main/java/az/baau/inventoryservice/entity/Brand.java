@@ -1,5 +1,6 @@
 package az.baau.inventoryservice.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
@@ -13,8 +14,8 @@ public class Brand {
     private Long id;
     @Column(nullable = false,unique = true)
     private String name;
-    @OneToMany(mappedBy = "brand",cascade = CascadeType.ALL)
-    private List<Product> products= new ArrayList<>();
+    @OneToMany(mappedBy = "brand",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    private List<Product> products;
 
     public Long getId() {
         return id;

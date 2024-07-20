@@ -1,5 +1,7 @@
 package az.baau.inventoryservice.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.time.LocalDateTime;
 
 public class ProductDTO {
@@ -9,6 +11,7 @@ public class ProductDTO {
     private double price;
     private int quantity;
     private LocalDateTime registerDate;
+    @JsonIgnore
     private LocalDateTime updateDate;
     private Long catalogId;
     private Long brandId;

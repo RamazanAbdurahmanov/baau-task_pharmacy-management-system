@@ -1,11 +1,12 @@
 package az.baau.inventoryservice.dto;
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.util.List;
 
 public class BrandDTO {
     private Long id;
     private String name;
+    @JsonIgnore
     private List<ProductDTO> products;
 
     public Long getId() {
